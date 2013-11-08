@@ -9,6 +9,8 @@
 /**
  * @property Doctor $Doctor
  */
+App::uses('AuthComponent', 'Controller/Component');
+App::uses('String', 'Utility');
 class DoctorsController extends  AppController
 {
 
@@ -39,12 +41,22 @@ class DoctorsController extends  AppController
         if ($this->request->is('post')) {
             $this->Doctor->create();
 
+            $this->request->data['Doctor']['password'] = AuthComponent::password($this->request->data['Doctor']['password']);
+
+            $roleId= $this->Doctor->User->Role->field('Role.id',array('role'=>'doctor'));
+
+            $userArray=array('email'=>$this->request->data['Doctor']['email'],'password'=>$this->request->data['Doctor']['password'],'role_id'=>$roleId);
+
+
+            if($this->Doctor->User->save($userArray))
+            {
+
             if ($this->Doctor->save($this->request->data))
             {
                 $this->Session->setFlash(__('Doctor has been saved.'));
                 return $this->redirect(array('controller' => 'hospitals','action' => 'index'));
             }
-
+            }
             $this->Session->setFlash(__('Unable to registrar hospital.'));
         }
     }
@@ -105,5 +117,13 @@ class DoctorsController extends  AppController
             return $this->redirect(array('controller' => 'hospitals','action' => 'index'));
         }
     }
+
+    public function calendar($id = null) {
+
+        $app=$this->Doctor->Appointment->find('all',array('conditions' => array('Appointment.doctor_id' => $id),'recursive' => -1));
+        pr($app);
+
+    }
+
 
 }

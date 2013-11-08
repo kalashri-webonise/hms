@@ -32,4 +32,38 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
+
+
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'hospitals', 'action' => 'index'),
+            'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+            'authenticate' => array(
+                'Form' =>array(
+                    'fields' => array(
+                        'username' => 'email', 'password' => 'password'
+                    ),
+                )
+            )
+        )
+    );
+
+
+    public function beforeFilter() {
+        parent::beforeFilter();
+        /*$this->Auth->loginRedirect = array('controller' => 'hospitals', 'action' => 'index');
+        $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
+        $this->Auth->authError = 'Invalid username or password';
+        $this->Auth->authenticate = array('Form' => array(
+            'fields' => array(
+                'username' => 'email', 'password' => 'password'
+            )
+        ));*/
+//        pr($this->Session->read('Auth.User'));exit;
+        $this->Auth->allow('add'); // Letting users register themselves
+    }
+    public $helpers = array('Html', 'Form', 'Session');
+
+
 }

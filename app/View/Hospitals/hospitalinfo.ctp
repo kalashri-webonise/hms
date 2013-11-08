@@ -4,6 +4,10 @@
     <u><?php echo $this->Html->link('Register new Hospital',
     array('controller' => 'hospitals', 'action' => 'add')); ?></u>
 </div>
+    <div align="right">
+        <u><?php echo $this->Html->link('Logout',
+            array('controller' => 'users', 'action' => 'logout')); ?></u>
+    </div>
     <br>
         <br>
 <div align="right"><?php echo $this->Form->postLink(

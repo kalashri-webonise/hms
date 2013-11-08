@@ -2,7 +2,18 @@ $(document).ready(function() {
 
     $('.datepicker').datepicker({
         format: 'yyyy-mm-dd'
+
     });
+
+    $('.datepicker1').datepicker({
+
+         format: 'yyyy-mm-dd'
+       //  endDate:'-1d',
+      //  daysOfWeekDisabled:'[0,6]'
+
+    });
+
+
 });
 function disablInput()
 {

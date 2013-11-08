@@ -3,8 +3,15 @@
     <u><?php echo $this->Html->link('Register',
         array('controller' => 'doctors', 'action' => 'add')); ?></u>
 </div>
+
 <br>
 <br>
+<td>
+    <?php echo $this->Html->link('appointments',
+    array('controller' => 'doctors', 'action' => 'calendar')); ?>
+</td>
+    <br>
+        <br>
 <div align="right"><?php echo $this->Form->postLink(
     'Home',
     array('controller' => 'hospitals','action' => 'index'));
@@ -25,7 +32,8 @@
             array('controller' => 'doctors', 'action' => 'view', $doctor['Doctor']['id']),array('style'=>'margin:0 20% 0 0;')); ?>
             <?php echo $this->Html->link('Edit',
             array('controller' => 'doctors', 'action' => 'edit', $doctor['Doctor']['id']),array('style'=>'margin:0 1% 0 0;')); ?>
-
+            <?php echo $this->Html->link('Appointment',
+            array('controller' => 'doctors', 'action' => 'calendar', $doctor['Doctor']['id']),array('style'=>'margin:0 1% 0 0;')); ?>
             <?php echo $this->Form->postLink(
             'Delete',
             array('action' => 'delete', $doctor['Doctor']['id']),

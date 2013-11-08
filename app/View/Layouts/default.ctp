@@ -22,51 +22,52 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <!DOCTYPE html>
 <html>
 <head>
-	<?php echo $this->Html->charset(); ?>
-	<title>
-		<?php echo $cakeDescription ?>:
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $this->Html->meta('icon');
+    <?php echo $this->Html->charset(); ?>
+    <title>
+        <?php echo $cakeDescription ?>:
+        <?php echo $title_for_layout; ?>
+    </title>
+    <?php
+    echo $this->Html->meta('icon');
 
-		echo $this->Html->css('cake.generic');
-        echo $this->Html->css('bootstrap');
-        echo $this->Html->css('bootstrap.min');
-        echo $this->Html->css('bootstrap-responsive');
-        echo $this->Html->css('bootstrap-responsive.min');
-        echo $this->Html->css('datepicker');
+    echo $this->Html->css('cake.generic');
+    echo $this->Html->css('bootstrap');
+    echo $this->Html->css('bootstrap.min');
+    echo $this->Html->css('bootstrap-responsive');
+    echo $this->Html->css('bootstrap-responsive.min');
+    echo $this->Html->css('jquery-ui');
 
-        echo $this->Html->script('jquery');
-        echo $this->Html->script('bootstrap.min');
-        echo $this->Html->script('bootstrap-datepicker');
-        echo $this->Html->script('bootstrap');
-        echo $this->Html->script('jquery.validate.js');
-			echo $this->fetch('meta');
-		echo $this->fetch('css');
-		echo $this->fetch('script');
-	?>
+
+
+   echo $this->Html->script('jquery-1.9.1');
+    echo $this->Html->script('bootstrap');
+    echo $this->Html->script('hospital');
+    echo $this->Html->script('jquery.validate');
+    echo $this->fetch('meta');
+    echo $this->fetch('css');
+    echo $this->fetch('script');
+    ?>
 </head>
 <body>
-	<div id="container">
-		<div style="color:#e9322d">
-			<h1 align="center" style="color:#006dcc">Hospital Management</h1>
-		</div>
-		<div id="content">
+<div id="container">
+    <div style="color:#e9322d">
+        <h1 align="center" style="color:#006dcc">Hospital Management</h1>
+    </div>
+    <div id="content">
 
-			<?php echo $this->Session->flash(); ?>
+        <?php echo $this->Session->flash(); ?>
 
-			<?php echo $this->fetch('content'); ?>
-		</div>
-		<div id="footer">
-			<?php  /*echo $this->Html->link(
+        <?php echo $this->fetch('content'); ?>
+    </div>
+    <div id="footer">
+        <?php  /*echo $this->Html->link(
 					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
 					'http://www.cakephp.org/',
 					array('target' => '_blank', 'escape' => false)  */
-			//	);
-			?>
-		</div>
-	</div>
-	<?php echo $this->element('sql_dump'); ?>
+        //	);
+        ?>
+    </div>
+</div>
+<?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
