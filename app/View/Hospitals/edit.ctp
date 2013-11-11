@@ -1,8 +1,9 @@
-<div align="right"><h4><?php echo $this->html->Link(
+<?php   echo $this->Html->script('jquery-ui');?>
+<div align="right"><?php echo $this->Html->Link(
     'Home',
-    array('action' => 'index'));
-    ?></h4></div>
-    <h2 align="center" style="color:#b94a48">Hospital Registration</h2>
+    array('controller' => 'hospitals','action' => 'myaccount'));
+    ?></div>
+<h2 align="center" style="color:#b94a48">Hospital Registration</h2>
 <?php
 echo $this->Html->script('hospital.js');
 echo $this->Form->create('Hospital');
@@ -44,29 +45,20 @@ echo $this->Form->create('Hospital');
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
-                        echo $this->Form->input('confirm_password',array('type'=>'password'));
+                        echo $this->Form->input('establish_date', array('class' => 'datepicker', 'id' => 'datepicker', 'type' => 'text', 'label' => 'Establish Date'));
                         ?>
                     </div>
                 </td>
-
             </tr>
             <tr>
 
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('establish_date', array('class' => 'datepicker1', 'id' => 'dp4', 'type' => 'text', 'label' => 'Establish Date'));
-                        ?>
-                    </div>
-                </td>
+
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
                         echo $this->Form->input('contact_no');
                         ?>
                 </td>
-            </tr>
-            <tr>
 
                 <td style="width:300px">
                     <div class="control-group span2">
@@ -74,20 +66,24 @@ echo $this->Form->create('Hospital');
                         echo $this->Form->input('address', array('rows' => '3'));
                         ?>
                 </td>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('country');
-                        ?>
-                </td>
             </tr>
             <tr>
 
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
+                        echo $this->Form->input('country');
+                        ?>
+                </td>
+
+                <td style="width:300px">
+                    <div class="control-group span2">
+                        <?php
                         echo $this->Form->input('state');?>
                 </td>
+            </tr>
+            <tr>
+
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
@@ -110,60 +106,85 @@ echo $this->Form->create('Hospital');
 
         ?>
 
-
         <script>
 
-    $(function () {
-        $('#HospitalAddForm').validate({
 
-            debug:false,
-            errorClass:"authError",
-            errorElement:"span",
-            rules:{
+            jQuery.validator.addMethod("lettersonly", function (value, element) {
+                return this.optional(element) || /^[a-z]+$/i.test(value);
 
-				"data[Hospital][city]":{
+            }, "Letters only please");
 
-                    required:true
+            jQuery.validator.addMethod("address", function (value, element) {
+                return this.optional(element) || /^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/i.test(value);
 
-                },
-                "data[Hospital][state]":{
+            }, "Only letters,digits,single spaces,hyphen and slash allowed");
 
-                    required:true
+            $(function () {
+                $('#HospitalAddForm').validate({
 
-                },
-                "data[Hospital][country]":{
+                    debug:false,
+                    errorClass:"authError",
+                    errorElement:"span",
+                    rules:{
 
-                    required:true
+                        "data[Hospital][city]":{
+                            lettersonly:true,
+                            required:true
 
-                },
-                 "data[Hospital][address]":{
-                    required:true
+                        },
+                        "data[Hospital][state]":{
+                            lettersonly:true,
+                            required:true
 
-                },
-              
-                "data[Hospital][contact_no]":{
-					required:true,
-                    number:true
-                 
-                },
-                 "data[Hospital][hospital_name]":{
-                    required:true
+                        },
+                        "data[Hospital][country]":{
+                            lettersonly:true,
+                            required:true
 
-                },
-              
-                "data[Hospital][establish_date]":{
-					required:true,
-                    number:true,
-                    maxlength:20
-                },
-                "data[Hospital][registration_no]":{
-					required:true,
-                    number:true,
-                    maxlength:20
-                }
-                 }
-                
+                        },
+                        "data[Hospital][address]":{
+                            required:true,
+                            address:true
+                        },
+
+                        "data[Hospital][contact_no]":{
+                            required:true,
+                            number:true,
+                            maxlength:20
+
+                        },
+                        "data[Hospital][hospital_name]":{
+                            required:true,
+                            alphanumeric:true
+
+                        },
+
+                        "data[Hospital][establish_date]":{
+
+                            date:true
+
+                        },
+                        "data[Hospital][email]":{
+                            required:true,
+                            email:true
+
+                        },
+                        "data[Hospital][password]":{
+                            required:true
+
+
+                        }
+
+
+                    }
+
                 });
 
-		});
-                </script>
+            });
+
+            $('#datepicker').datepicker({
+                maxDate:0,
+                minDate:'-100Y'
+
+            });
+        </script>

@@ -11,9 +11,9 @@
  */
 class Patient extends  AppModel
 {
-  public $inserted_id;
+    public $inserted_id;
 
-  public function afterSave($created) {
+    public function afterSave($created) {
         if($created) {
             $inserted_id = $this->getInsertID();
             $idHash= md5( $inserted_id);
@@ -43,8 +43,7 @@ class Patient extends  AppModel
     public $validate = array(
         'first_name' => array(
 
-            'required' =>true,
-            'allowEmpty' => false,
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'first_name cannot be left blank'),
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in first name'
 
@@ -53,14 +52,12 @@ class Patient extends  AppModel
 
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed last name',
-            'allowEmpty' => false,
-            'required' => true
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'last_name cannot be left blank')
         ),
 
 
         'middle_name' => array(
-            'allowEmpty' => false,
-            'required' => true,
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'middle_name cannot be left blank'),
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in middle name'
         ),
@@ -68,17 +65,14 @@ class Patient extends  AppModel
 
 
         'address' => array(
-            'allowEmpty' => false,
-            'required' => true,
-
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'address cannot be left blank'),
             'rule' => '/^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/i',
             'message' => 'Please supply a valid address.'
 
         ),
 
         'mob1' => array(
-            'allowEmpty' => false,
-            'required' => true,
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'mob1 cannot be left blank'),
 
             'rule' => 'numeric',
             'maxLength' => array(
@@ -91,7 +85,7 @@ class Patient extends  AppModel
         'mob2' => array(
 
             'rule' => 'numeric',
-
+            'allowEmpty' => true,
             'maxLength' => array(
                 'rule' => array('maxLength', 20),
                 'message' => 'mobile must be no larger than 20 digits.'
@@ -102,8 +96,7 @@ class Patient extends  AppModel
 
 
         'disease_name' => array(
-            'required' =>true,
-            'allowEmpty' => false,
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'disease name cannot be left blank'),
 
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed last name'
@@ -114,21 +107,24 @@ class Patient extends  AppModel
         'year_of_suffering' => array(
 
             'rule' => 'numeric',
-            'message' => 'year_of_suffering  should be numeric'
+            'message' => 'year_of_suffering  should be numeric',
+             'allowEmpty' => true
         ),
 
 
         'hospital_name' => array(
 
             'rule' =>'alphaNumeric',
-            'message' => 'Hospital name should contain letter or digits '
+            'message' => 'Hospital name should contain letter or digits ',
+            'allowEmpty' => true
 
 
         ),
         'contact_no' => array(
 
             'rule' =>'numeric',
-            'message' => 'Mobile number should be numeric',
+            'message' => 'contact number should be numeric',
+            'allowEmpty' => true,
 
 
             'maxLength' => array(
@@ -139,7 +135,7 @@ class Patient extends  AppModel
         'start_year_of_treatment' => array(
 
             'rule' =>'numeric',
-            'message' => 'Mobile number should be numeric',
+            'message' => 'start_year_of_treatment should be numeric',
             'allowEmpty' => true
         ),
         'previous_visit_date' => array(
@@ -150,7 +146,8 @@ class Patient extends  AppModel
         'department' => array(
 
             'rule' => '/^[a-zA-Z]+/i',
-            'message' => 'Only letters allowed in Department'
+            'message' => 'Only letters allowed in Department',
+            'allowEmpty' => true
 
         ),
 
@@ -159,38 +156,35 @@ class Patient extends  AppModel
 
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in City',
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'city cannot be left blank')
         ),
         'state' => array(
 
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in State',
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'state cannot be left blank')
         ),
 
         'country' => array(
 
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in Country',
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'country cannot be left blank')
         ),
         'password' => array(
-
-            'passwordequal'  => array('rule' =>'checkpasswords','message' => 'Passwords dont match with confirm password')
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'password cannot be left blank')
+            //'passwordequal'  => array('rule' =>'checkpasswords','message' => 'Passwords dont match with confirm password')
         )
 
 
 
     );
-function checkpasswords()
-{
-if(strcmp($this->data['Patient']['password'],$this->data['Patient']['confirm_password']) ==0 )
-{
-return true;
-}
-return false;
-}
+    function checkpasswords()
+    {
+        if(strcmp($this->data['Patient']['password'],$this->data['Patient']['confirm_password']) ==0 )
+        {
+            return true;
+        }
+        return false;
+    }
 }

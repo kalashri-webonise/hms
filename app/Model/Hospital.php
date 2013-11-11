@@ -30,11 +30,11 @@ class Hospital extends AppModel
 
         ),
 
-             'Appointment' => array(
-                 'className' => 'Appointment',
-                 'foreignKey' => 'hospital_id',
+        'Appointment' => array(
+            'className' => 'Appointment',
+            'foreignKey' => 'hospital_id',
 
-             )
+        )
 
     );
 
@@ -48,17 +48,8 @@ class Hospital extends AppModel
 
 
     public $validate = array(
-        'address' => array(
 
-
-            'rule' => '/^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/i',
-            'message' => 'Please supply a valid address.',
-
-            'required' =>true,
-            'allowEmpty' => false
-
-        ),
-        'contact_no' => array(
+      /*  'contact_no' => array(
 
 
             'rule'    => 'numeric',
@@ -79,7 +70,7 @@ class Hospital extends AppModel
 
             'required' =>true,
             'allowEmpty' => false
-        ),
+        ),*/
 
         'city' => array(
 
@@ -110,19 +101,16 @@ class Hospital extends AppModel
             'message'    => 'Enter a valid date in YY-MM-DD format.',
             'allowEmpty' => true
         ),
-           'password' => array(
+        'password' => array(
 
-            'passwordequal'  => array('rule' =>'checkpasswords','message' => 'Passwords dont match with confirm password')
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'Password cannot be left blank')
+        ),
+        'email' => array(
+
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'email cannot be left blank')
         )
     );
-    function checkpasswords()
-    {
-        if(strcmp($this->data['Hospital']['password'],$this->data['Hospital']['confirm_password']) ==0 )
-        {
-            return true;
-        }
-        return false;
-    }
+
 
 
 }

@@ -1,3 +1,11 @@
+<?php
+if(isset($appointmentArr)!=null)
+{
+//pr($appointmentArr);
+    count($appointmentArr);
+}
+?>
+<script type="text/javascript">
 $(document).ready(function () {
 
 
@@ -57,6 +65,7 @@ $(document).ready(function () {
 
                         $calendar.weekCalendar("removeUnsavedEvents");
                         $calendar.weekCalendar("updateEvent", calEvent);
+
                         $dialogContent.dialog("close");
                     },
                     cancel:function () {
@@ -66,6 +75,7 @@ $(document).ready(function () {
             }).show();
 
             $dialogContent.find(".date_holder").text($calendar.weekCalendar("formatDate", calEvent.start));
+            document.getElementById("datepicker").value=$calendar.weekCalendar("formatDate", calEvent.start);
             setupStartAndEndTimeFields(startField, endField, calEvent, $calendar.weekCalendar("getTimeslotTimes", calEvent.start));
 
         },
@@ -142,73 +152,30 @@ $(document).ready(function () {
     }
 
 
-    /*function getEventData() {
-     var year = new Date().getFullYear();
-     var month = new Date().getMonth();
-     var day = new Date().getDate();
-     // console.log(new Date(year, month, day, 14, 45));
-
-     //       console.log(app);
-     var json = JSON.parse(app);
-     //       console.log(json);
-     $.each(json, function (key, value) {
-     //  console.log(key+"="+ value);
-
-     $.each(value, function (key1,value1) {
-     //                  console.log( value1);
-     if(key1=='idApp')
-     {
-     idApp=value1;
-
-     }
-     if(key1=='start')
-     {
-     st=value1;
-     return st;
-
-     }
-     if(key1=='end')
-     {
-     end=value1;
-     return end;
-
-     }
-     if(key1=='title')
-     {
-     title=value1;
-     return appointment(idApp,title,year,month,day);
-
-     }
-     });
-
-     });
-     //  var appString = app
-     //      console.log(json);
-     //  console.log(appString['idApp']);
-     }*/
     function getEventData() {
-        var obj = jQuery.parseJSON(app);
 
-        $.each(obj, function (key, value) {
-            console.log(obj.id);
-        var year = new Date().getFullYear();
-        var month = new Date().getMonth();
-        var day = new Date().getDate();
-
-            return {events :obj}
-        /*return {
+        return {
             events:[
-                {
-                    "id":obj.idApp,
-                    "start":new Date(year, month, day, 12),
-                    "end":new Date(year, month, day, 13, 30),
-                    "title":'"'+obj.title+'"'
+            <?php
+            $count=0;
+            foreach ($appointmentArr as $appointment) {
 
+                ?>
+                {
+                    "id":<?php echo $appointment['id']?>,
+                    "start":new Date(<?php echo $appointment['year']?>, <?php echo $appointment['month'] - 1?>, <?php echo $appointment['day']?>,<?php echo $appointment['start1']?>,<?php echo $appointment['start2']?>),
+                    "end":new Date(<?php echo $appointment['year']?>, <?php echo $appointment['month'] - 1?>, <?php echo $appointment['day']?>,<?php echo $appointment['end1']?>,<?php echo $appointment['end2']?>),
+                    "title": "<?php echo $appointment['title']?>"
                 }
 
+                <?php echo ($count != count($appointmentArr)+1) ? ',' : '';
+                $count++;
+                ?>
+                <?php } ?>
             ]
-        };*/
-        });
+
+        };
+
     }
 
 
@@ -245,9 +212,9 @@ $(document).ready(function () {
         var startTime = $(this).find(":selected").val();
         var currentEndTime = $endTimeField.find("option:selected").val();
         $endTimeField.html(
-            $endTimeOptions.filter(function () {
-                return startTime < $(this).val();
-            })
+                $endTimeOptions.filter(function () {
+                    return startTime < $(this).val();
+                })
         );
 
         var endTimeSelected = false;
@@ -287,3 +254,5 @@ $(document).ready(function () {
 
 
 });
+
+</script>

@@ -15,7 +15,7 @@ echo $this->Html->script('hospital.js');
 
     <div class="" style="border:1px solid #b94a48;background-color:#bbbbbb">
         <label><h3 is='lbl' align="center"><b>Personal Details</b></h3></label>
-       <?php echo $this->Form->create('Patient',array('type' => 'file')); ?>
+        <?php echo $this->Form->create('Patient',array('type' => 'file')); ?>
         <table style="border:none">
             <tr>
 
@@ -106,13 +106,13 @@ echo $this->Html->script('hospital.js');
                         ?>
                     </div>
                 </td>
-                <td style="width:300px">
+                <!-- <td style="width:300px">
                     <div class="control-group span2">
                         <?php
-                        echo $this->Form->input('confirm_password',array('type'=>'password'));
-                        ?>
+                // echo $this->Form->input('confirm_password',array('type'=>'password'));
+                ?>
                     </div>
-                </td>
+                </td>-->
             </tr>
         </table>
 
@@ -120,90 +120,90 @@ echo $this->Html->script('hospital.js');
 
 
     <div class="" style="border:1px solid #b94a48;background-color:#bbbbbb"">
-        <label><h3 is='lbl' align="center"><b>Medical Details</b></h3></label>
-        <table style="border:none" id="medicalHistory">
-            <tr>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('disease_name', array('div' => false)); ?>
-                    </div>
-                </td>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('hospital_name', array('div' => false)); ?>
-                    </div>
-                </td>
+    <label><h3 is='lbl' align="center"><b>Medical Details</b></h3></label>
+    <table style="border:none" id="medicalHistory">
+        <tr>
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+                    echo $this->Form->input('disease_name', array('div' => false)); ?>
+                </div>
+            </td>
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+                    echo $this->Form->input('hospital_name', array('div' => false)); ?>
+                </div>
+            </td>
 
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('year_of_suffering', array('div' => false)); ?>
-                    </div>
-                </td>
-
-
-            </tr>
-            <tr>
-
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('consulting_doctor', array('div' => false));  ?>
-                    </div>
-                </td>
-                <td style="width:300px">
-                    <div class="control-group span2" id='dept'>
-                        <?php
-                        echo $this->Form->input('department', array('div' => false)); ?>
-
-                    </div>
-                </td>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-
-                        echo $this->Form->input('contact_no', array('div' => false));
-
-                        ?>
-                    </div>
-                </td>
-
-            </tr>
-            <tr>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('start_year_of_treatment', array('div' => false));
-                        ?>
-                    </div>
-                </td>
-                <td style="width:300px">
-                    <div class="control-group span2" id='LstAppointment'>
-                        <?php
-
-                        echo $this->Form->input('previous_visit_date', array('class' => 'datepicker', 'id' => 'datepicker', 'type' => 'text', 'label' => false, 'div' => false, 'label' => 'Previous Visit Date')); ?>
-
-                    </div>
-                </td>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('report',array('type'=>'file'));
-                        ?>
-                </td>
-            </tr>
-        </table>
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+                    echo $this->Form->input('year_of_suffering', array('div' => false)); ?>
+                </div>
+            </td>
 
 
-    </div>
+        </tr>
+        <tr>
+
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+                    echo $this->Form->input('consulting_doctor', array('div' => false));  ?>
+                </div>
+            </td>
+            <td style="width:300px">
+                <div class="control-group span2" id='dept'>
+                    <?php
+                    echo $this->Form->input('department', array('div' => false)); ?>
+
+                </div>
+            </td>
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+
+                    echo $this->Form->input('contact_no', array('div' => false));
+
+                    ?>
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+                    echo $this->Form->input('start_year_of_treatment', array('div' => false));
+                    ?>
+                </div>
+            </td>
+            <td style="width:300px">
+                <div class="control-group span2" id='LstAppointment'>
+                    <?php
+
+                    echo $this->Form->input('previous_visit_date', array('class' => 'datepicker', 'id' => 'datepicker', 'type' => 'text', 'label' => false, 'div' => false, 'label' => 'Previous Visit Date')); ?>
+
+                </div>
+            </td>
+            <td style="width:300px">
+                <div class="control-group span2">
+                    <?php
+                    echo $this->Form->input('report',array('type'=>'file'));
+                    ?>
+            </td>
+        </tr>
+    </table>
 
 
-    <div align='center'>
-        <?php
-        echo $this->Form->end(array('class' => 'btn btn-primary', array('div' => false)));  ?>
-    </div>
+</div>
+
+
+<div align='center'>
+    <?php
+    echo $this->Form->end(array('class' => 'btn btn-primary', array('div' => false)));  ?>
+</div>
 
 </div>
 <?php
@@ -235,12 +235,14 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
 
 
     $(function () {
+
         $('#PatientAddForm').validate({
 
             debug:false,
             errorClass:"authError",
             errorElement:"span",
-            rules:{
+
+        rules:{
                 "data[Patient][first_name]":{
                     required:true,
                     lettersonly: true
@@ -275,11 +277,7 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
                     number:true,
                     maxlength:20
                 },
-                "data[Patient][mob2]":{
 
-                    number:true,
-                    maxlength:20
-                },
                 "data[Patient][disease_name]":{
 
                     required:true,
@@ -297,7 +295,7 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
 
                 },
                 "data[Patient][consulting_doctor]":{
-
+                    lettersonly: true
                 },
                 "data[Patient][contact_no]":{
                     number:true,
@@ -335,10 +333,26 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
                 "data[Patient][department]":{
                     lettersonly: true
 
+                },
+                "data[Patient][password]":{
+                    required:true
+
+                },
+                "data[Patient][email]":{
+                    required:true,
+                    email:true
+
                 }
+
             }
 
         });
+
+    });
+
+    $('#datepicker').datepicker({
+        maxDate:0,
+        minDate:'-10Y'
 
     });
 </script>

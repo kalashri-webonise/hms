@@ -1,10 +1,10 @@
 <div align="right"><?php echo $this->Html->Link(
     'Home',
-    array('controller' => 'hospitals','action' => 'index'));
+    array('controller' => 'doctors', 'action' => 'myaccount'));
     ?></div>
 <table>
-    <tr><td>
-        <h3>Registration No :<?php echo h($doctor['Doctor']['registration_no']); ?></h3></tr></td>
+    <tr>
+
     <tr><td><h4>First Name :</h4></td><td><?php echo $doctor['Doctor']['first_name']; ?></td></tr>
     <tr><td><h4>Middle Name :</h4></td><td><?php echo $doctor['Doctor']['middle_name']; ?></td></tr>
     <tr><td><h4>Last Name :</h4></td><td><?php echo $doctor['Doctor']['last_name']; ?></td></tr>

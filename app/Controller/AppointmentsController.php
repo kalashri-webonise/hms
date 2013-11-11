@@ -11,7 +11,7 @@ App::uses('AuthComponent', 'Controller/Component');
 class AppointmentsController extends AppController
 {
 
-    public function ajax_fetch_doctor($id)
+    public function ajax_fetch_doctor($id=null)
     {
 
         $this->layout = 'ajax';
@@ -27,7 +27,7 @@ class AppointmentsController extends AppController
 
     }
 
-    public function ajax_fetch_timeslot($date)
+    public function ajax_fetch_timeslot($date=null)
     {
 
 

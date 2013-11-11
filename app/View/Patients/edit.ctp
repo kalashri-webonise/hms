@@ -1,14 +1,13 @@
 <?php   echo $this->Html->script('jquery-ui');?>
 <div align="right"><h4><?php echo $this->html->Link(
     'Home',
-    array('controller' => 'hospitals', 'action' => 'index'));
+    array('controller' => 'patients','action' => 'myaccount'));
     ?></h4></div>
 <h2 align="center" style="color:#b94a48">Patient Registration</h2>
 <?php
 echo $this->Html->script('hospital.js');
-echo $this->Form->create('Patient');
-?>
 
+?>
 
 
 <div class="">
@@ -107,13 +106,13 @@ echo $this->Form->create('Patient');
                         ?>
                     </div>
                 </td>
-                <td style="width:300px">
+                <!-- <td style="width:300px">
                     <div class="control-group span2">
                         <?php
-                        echo $this->Form->input('confirm_password',array('type'=>'password'));
-                        ?>
+                // echo $this->Form->input('confirm_password',array('type'=>'password'));
+                ?>
                     </div>
-                </td>
+                </td>-->
             </tr>
         </table>
 
@@ -184,7 +183,7 @@ echo $this->Form->create('Patient');
                 <div class="control-group span2" id='LstAppointment'>
                     <?php
 
-                    echo $this->Form->input('previous_visit_date', array('class' => 'datepicker', 'id' => 'dp4', 'type' => 'text', 'label' => false, 'div' => false, 'label' => 'Previous Visit Date')); ?>
+                    echo $this->Form->input('previous_visit_date', array('class' => 'datepicker', 'id' => 'datepicker', 'type' => 'text', 'label' => false, 'div' => false, 'label' => 'Previous Visit Date')); ?>
 
                 </div>
             </td>
@@ -211,7 +210,6 @@ echo $this->Form->create('Patient');
 echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidden'));
 ?>
 
-
 <!--  <td style="width:300px">
                     <div class="control-group span2">
 
@@ -237,11 +235,13 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
 
 
     $(function () {
+
         $('#PatientAddForm').validate({
 
             debug:false,
             errorClass:"authError",
             errorElement:"span",
+
             rules:{
                 "data[Patient][first_name]":{
                     required:true,
@@ -277,11 +277,7 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
                     number:true,
                     maxlength:20
                 },
-                "data[Patient][mob2]":{
 
-                    number:true,
-                    maxlength:20
-                },
                 "data[Patient][disease_name]":{
 
                     required:true,
@@ -299,7 +295,7 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
 
                 },
                 "data[Patient][consulting_doctor]":{
-
+                    lettersonly: true
                 },
                 "data[Patient][contact_no]":{
                     number:true,
@@ -318,26 +314,45 @@ echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidde
 
                 "data[Patient][city]":{
 
-                    required:true
+                    required:true,
+                    lettersonly: true
 
                 },
                 "data[Patient][state]":{
 
-                    required:true
+                    required:true,
+                    lettersonly: true
 
                 },
                 "data[Patient][country]":{
 
-                    required:true
+                    required:true,
+                    lettersonly: true
 
                 },
                 "data[Patient][department]":{
                     lettersonly: true
 
+                },
+                "data[Patient][password]":{
+                    required:true
+
+                },
+                "data[Patient][email]":{
+                    required:true,
+                    email:true
+
                 }
+
             }
 
         });
+
+    });
+
+    $('#datepicker').datepicker({
+        maxDate:0,
+        minDate:'-10Y'
 
     });
 </script>

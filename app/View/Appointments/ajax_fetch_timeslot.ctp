@@ -9,4 +9,4 @@
 
 echo $this->Form->input('time',array(
     'type'=>'select',
-    'options'=>$availableTime,'empty' => 'Select Doctor'));
+    'options'=>$availableTime,'empty' => 'Select Time'));

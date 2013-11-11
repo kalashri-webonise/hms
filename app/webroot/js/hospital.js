@@ -1,17 +1,14 @@
 $(document).ready(function() {
 
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd'
+
+    $.datepicker.setDefaults({ dateFormat:'yy-mm-dd'});
+    $('#datepicker').datepicker({
+     minDate:0
 
     });
 
-    $('.datepicker1').datepicker({
 
-         format: 'yyyy-mm-dd'
-       //  endDate:'-1d',
-      //  daysOfWeekDisabled:'[0,6]'
 
-    });
 
 
 });

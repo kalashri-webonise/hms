@@ -25,7 +25,7 @@
                 type:'post',
 
                 success:function (data) {
-                    console.log(data);
+
                     $('#ajax_time').html(data);
 
                 }
@@ -51,7 +51,7 @@ echo $this->Html->script('hospital');
         <table style="border:none">
             <tr>
                 <td>
-                    <div class="control-group span1">
+                    <div class="control-group span2">
                         <?php
                         echo $this->Form->input('hospital_id', array('type' => 'select', 'options' => $hospital_name, 'empty' => 'Select Hospital'));
                         ?>
@@ -61,7 +61,7 @@ echo $this->Html->script('hospital');
             </tr>
             <tr>
                 <td>
-                    <div class="control-group span1">
+                    <div class="control-group span2">
                         <div id="ajax_doctor_id">
                             <?php
                             echo $this->Form->input('doctor_id', array('type' => 'select', 'empty' => 'Select Doctor'));
@@ -73,7 +73,7 @@ echo $this->Html->script('hospital');
             </tr>
             <tr>
                 <td>
-                    <div class="control-group span1">
+                    <div class="control-group span2">
                         <?php
                         echo $this->Form->input('name');
                         ?>
@@ -83,7 +83,7 @@ echo $this->Html->script('hospital');
             </tr>
             <tr>
                 <td>
-                    <div class="control-group span1">
+                    <div class="control-group span2">
                         <?php
                         echo $this->Form->input('email');
                         ?>
@@ -102,21 +102,9 @@ echo $this->Html->script('hospital');
 
             </tr>
             <tr>
-                <td>
-                    <div class="control-group span1">
-                        <div id="ajax_time">
-                        <?php
-                            $this->Form->input('time',array('type'=>'select','empty' => 'Select Doctor'));
-
-                            ?>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
 
                 <td>
-                    <div class="control-group span1">
+                    <div class="control-group span2">
                         <?php
                         echo $this->Form->input('date', array('class' => 'datepicker', 'id' => 'datepicker', 'type' => 'text', 'label' => false, 'div' => false, 'label' => 'Date'));
                         ?>
@@ -124,6 +112,19 @@ echo $this->Html->script('hospital');
                 </td>
 
             </tr>
+            <tr>
+                <td>
+                    <div class="control-group span2">
+                        <div id="ajax_time">
+                        <?php
+                            echo $this->Form->input('time',array('type'=>'select','empty' => 'Select Time'));
+
+                            ?>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
         </table>
         <div align="center">
             <?php echo $this->Form->end(array('class' => 'btn btn-primary')); ?>

@@ -22,7 +22,37 @@ class UsersController extends AppController
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirect());
+              $users=$this->Session->read('Auth.User');
+                switch($users['Role']['role'])
+                {
+                    case 'hospital_admin':
+                    {
+
+                        $this->redirect(array('controller' => 'hospitals', 'action' => 'myaccount'));
+                        break;
+                    }
+                    case 'superadmin':
+                    {
+
+                        $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
+                        break;
+                    }
+                    case 'doctor':
+                    {
+
+                        $this->redirect(array('controller' => 'doctors', 'action' => 'myaccount'));
+                        break;
+                    }
+                    case 'patient':
+                    {
+
+                        $this->redirect(array('controller' => 'patients','action' => 'myaccount'));
+                        break;
+                    }
+
+                }
+
+                return $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
             }
             $this->Session->setFlash(__('Invalid username or password, try again'));
         } else {
@@ -34,7 +64,6 @@ class UsersController extends AppController
 
     public function logout() {
         return $this->redirect($this->Auth->logout());
-
     }
 
 

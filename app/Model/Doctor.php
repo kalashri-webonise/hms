@@ -56,8 +56,7 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed last name',
 
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'last name cannot be left blank')
         ),
 
 
@@ -67,8 +66,7 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in middle name',
 
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'middle name cannot be left blank')
         ),
 
         'address' => array(
@@ -76,15 +74,13 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z0-9-\/] ?([a-zA-Z0-9-\/]|[a-zA-Z0-9-\/] )*[a-zA-Z0-9-\/]$/i',
             'message' => 'Please supply a valid address.',
 
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'address cannot be left blank')
         ),
 
         'mobile_no' => array(
             'rule' => 'numeric',
             'message' => 'Mobile number should be numeric',
-            'required' => true,
-            'allowEmpty' => false,
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'mobile number cannot be left blank'),
             'maxLength' => array(
                 'rule' => array('maxLength', 20),
                 'message' => 'mobile must be no larger than 20 digits.'
@@ -99,16 +95,14 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in specialization',
 
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'specialization cannot be left blank')
 
         ),
         'year_of_exp' => array(
 
             'rule' => 'numeric',
             'message' => 'Years of experience should be numeric',
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'year of exp cannot be left blank')
         ),
 
 
@@ -118,8 +112,7 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in City',
 
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'city cannot be left blank')
         ),
         'state' => array(
 
@@ -127,8 +120,7 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in State',
 
-            'required' => true,
-            'allowEmpty' => false
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'state cannot be left blank')
         ),
 
         'country' => array(
@@ -136,12 +128,13 @@ class Doctor extends AppModel
             'rule' => '/^[a-zA-Z]+/i',
             'message' => 'Only letters allowed in Country',
 
-            'required' => true
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'country cannot be left blank')
 
         ),
-         'password' => array(
+        'password' => array(
 
-            'passwordequal'  => array('rule' =>'checkpasswords','message' => 'Passwords dont match with confirm password')
+            // 'passwordequal'  => array('rule' =>'checkpasswords','message' => 'Passwords dont match with confirm password')
+            'required' => array( 'rule' => array('notEmpty'),'message' => 'password cannot be left blank')
         )
 
     );

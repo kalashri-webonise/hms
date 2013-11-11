@@ -1,8 +1,6 @@
 
-<div>
-    <u><?php echo $this->Html->link('Register',
-        array('controller' => 'patients', 'action' => 'add')); ?></u>
-</div>
+
+
 <br>
 <br>
 <div align="right"><?php echo $this->Form->postLink(

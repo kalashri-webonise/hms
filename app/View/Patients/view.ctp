@@ -1,6 +1,6 @@
 <div align="right"><?php echo $this->Html->Link(
     'Home',
-    array('controller' => 'hospitals','action' => 'index'));
+    array('controller' => 'patients','action' => 'myaccount'));
     ?></div>
 <table style='border:1px solid #000000;border-style:collapse;'>
 <colgroup>

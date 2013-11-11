@@ -45,29 +45,20 @@ echo $this->Form->create('Hospital');
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
-                        echo $this->Form->input('confirm_password',array('type'=>'password'));
+                        echo $this->Form->input('establish_date', array('class' => 'datepicker', 'id' => 'datepicker', 'type' => 'text', 'label' => 'Establish Date'));
                         ?>
                     </div>
                 </td>
-
             </tr>
             <tr>
 
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('establish_date', array('class' => 'datepicker1', 'id' => 'dp4', 'type' => 'text', 'label' => 'Establish Date'));
-                        ?>
-                    </div>
-                </td>
+
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
                         echo $this->Form->input('contact_no');
                         ?>
                 </td>
-            </tr>
-            <tr>
 
                 <td style="width:300px">
                     <div class="control-group span2">
@@ -75,20 +66,24 @@ echo $this->Form->create('Hospital');
                         echo $this->Form->input('address', array('rows' => '3'));
                         ?>
                 </td>
-                <td style="width:300px">
-                    <div class="control-group span2">
-                        <?php
-                        echo $this->Form->input('country');
-                        ?>
-                </td>
             </tr>
             <tr>
 
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
+                        echo $this->Form->input('country');
+                        ?>
+                </td>
+
+                <td style="width:300px">
+                    <div class="control-group span2">
+                        <?php
                         echo $this->Form->input('state');?>
                 </td>
+            </tr>
+            <tr>
+
                 <td style="width:300px">
                     <div class="control-group span2">
                         <?php
@@ -106,12 +101,14 @@ echo $this->Form->create('Hospital');
             ?>
         </div>
 
-                <?php
-                echo $this->Form->input('registration_no', array('type' => 'hidden'));
+        <?php
+        echo $this->Form->input('registration_no', array('type' => 'hidden'));
 
-                ?>
+        ?>
 
         <script>
+
+
             jQuery.validator.addMethod("lettersonly", function (value, element) {
                 return this.optional(element) || /^[a-z]+$/i.test(value);
 
@@ -166,11 +163,28 @@ echo $this->Form->create('Hospital');
 
                             date:true
 
+                        },
+                        "data[Hospital][email]":{
+                            required:true,
+                            email:true
+
+                        },
+                        "data[Hospital][password]":{
+                            required:true
+
+
                         }
+
 
                     }
 
                 });
+
+            });
+
+            $('#datepicker').datepicker({
+               maxDate:0,
+                minDate:'-100Y'
 
             });
         </script>
