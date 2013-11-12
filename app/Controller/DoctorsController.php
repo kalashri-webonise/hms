@@ -36,12 +36,16 @@ class DoctorsController extends AppController
 
     }
     public function myaccount()
-    {  $users = $this->Session->read('Auth.User');
-        if ($users['Role']['role'] == 'doctor' || $users['Role']['role'] == 'superadmin') {
+    {  $this->loadModel('Hospital');
+        $users = $this->Session->read('Auth.User');
+        if ($users['Role']['role'] == 'doctor') {
             $this->set('users',$users);
+
+            $hospitalList=$this->Hospital->find('all');
+            $this->set('hospitalList',$hospitalList);
     }
     else {
-        $this->Session->setFlash(__('You are not authorised to access Doctor information.'));
+        $this->Session->setFlash(__('You are not authorised to access Doctor account.'));
         $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
 
 

@@ -34,9 +34,12 @@
     });
 
 </script>
-
 <div align="right"><h4><?php echo $this->html->Link(
-    'Home',
+    'Patient Home',
+    array('controller' => 'patients', 'action' => 'myaccount'));
+    ?></h4></div>
+<div align="right"><h4><?php echo $this->html->Link(
+    'Admin Home Page',
     array('controller' => 'hospitals', 'action' => 'index'));
     ?></h4></div>
 <h2 align="center" style="color:#b94a48">Appointment</h2>

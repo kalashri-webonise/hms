@@ -36,13 +36,15 @@ class PatientsController extends AppController
         }
     }
     public function myaccount()
-    {
+    {   $this->loadModel('Hospital');
         $users = $this->Session->read('Auth.User');
-        if ($users['Role']['role'] == 'patient' || $users['Role']['role'] == 'superadmin') {
+        if ($users['Role']['role'] == 'patient') {
             $this->set('users',$users);
+            $hospitalList=$this->Hospital->find('all');
+            $this->set('hospitalList',$hospitalList);
         }
         else {
-            $this->Session->setFlash(__('You are not authorised to access Patient information.'));
+            $this->Session->setFlash(__('You are not authorised to access Patient account.'));
             $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
 
 
@@ -68,14 +70,15 @@ class PatientsController extends AppController
 
                 $userArray = array('email' => $this->request->data['Patient']['email'], 'password' => $this->request->data['Patient']['password'], 'role_id' => $roleId);
                 $this->Patient->create();
+
             if ($this->Patient->User->save($userArray)) {
                 $user_id = $this->Patient->User->getInsertID();
                 $this->request->data['Patient']['user_id'] = $user_id;
 
                 $permitted = array('image/gif', 'image/jpeg', 'image/png', 'application/pdf', 'application/msword');
 
-                $path = $this->request->data['Patient']['registration_no'];
-
+               // $path = $this->request->data['Patient']['registration_no'];
+             $path= $this->request->data['Patient']['email'];
                 if (!file_exists('img/uploads/' . $path)) {
                     $oldumask = umask(0);
                     mkdir("img/uploads/" . $path, 0777, true);

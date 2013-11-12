@@ -1,6 +1,10 @@
 <?php   echo $this->Html->script('jquery-ui');?>
+<div align="right"><?php echo $this->Html->Link(
+    'Admin Back to home',
+    array('controller' => 'hospitals','action' => 'index'));
+    ?></div>
 <div align="right"><h4><?php echo $this->html->Link(
-    'Home',
+    'User Account',
     array('controller' => 'patients','action' => 'myaccount'));
     ?></h4></div>
 <h2 align="center" style="color:#b94a48">Patient Registration</h2>

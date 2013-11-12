@@ -16,7 +16,7 @@
         </tr>
 
 
-        <?php foreach ($hospitals as $hospital): ?>
+        <?php foreach ($hospitalList as $hospital): ?>
         <tr>
 
             <td>

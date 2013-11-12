@@ -1,5 +1,9 @@
 <div align="right"><?php echo $this->Html->Link(
-    'Home',
+    'Admin Back to home',
+    array('controller' => 'hospitals','action' => 'index'));
+    ?></div>
+<div align="right"><?php echo $this->Html->Link(
+    'User Account',
     array('controller' => 'patients','action' => 'myaccount'));
     ?></div>
 <table style='border:1px solid #000000;border-style:collapse;'>

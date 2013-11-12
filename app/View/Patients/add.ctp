@@ -1,8 +1,5 @@
 <?php   echo $this->Html->script('jquery-ui');?>
-<div align="right"><h4><?php echo $this->html->Link(
-    'Home',
-    array('controller' => 'hospitals', 'action' => 'index'));
-    ?></h4></div>
+
 <h2 align="center" style="color:#b94a48">Patient Registration</h2>
 <?php
 echo $this->Html->script('hospital.js');
@@ -198,6 +195,9 @@ echo $this->Html->script('hospital.js');
 
 
 </div>
+<?php
+echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidden'));
+?>
 
 
 <div align='center'>
@@ -206,9 +206,6 @@ echo $this->Html->script('hospital.js');
 </div>
 
 </div>
-<?php
-echo $this->Form->input('registration_no', array('div' => false,'type' => 'hidden'));
-?>
 
 <!--  <td style="width:300px">
                     <div class="control-group span2">

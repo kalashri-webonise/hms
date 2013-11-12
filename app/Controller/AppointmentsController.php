@@ -46,7 +46,7 @@ class AppointmentsController extends AppController
 
 
     public function add()
-    {
+    {   $users = $this->Session->read('Auth.User');
         $hospitalName = $this->Appointment->Hospital->find('list', array(
             'fields' => array('Hospital.hospital_name')
         ));
@@ -60,7 +60,14 @@ class AppointmentsController extends AppController
 
             if ($this->Appointment->save($this->request->data)) {
                 $this->Session->setFlash(__('Appointment has been saved.'));
-                return $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
+                if($users['Role']['role'] == 'superadmin')
+                {
+                    $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
+                }
+                else{
+                    $this->redirect(array('controller' => 'patients', 'action' => 'myaccount'));
+                }
+
             }
             $this->Session->setFlash(__('Unable to set Appointment.'));
 

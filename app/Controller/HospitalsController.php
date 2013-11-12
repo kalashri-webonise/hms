@@ -17,9 +17,16 @@ class HospitalsController extends AppController
 
 
     public function index()
-    {
+    {   $users = $this->Session->read('Auth.User');
 
-        //  $this->set('hospitals', $this->Hospital->find('all'));
+       /* if ($users['Role']['role'] != 'superadmin') {
+
+            $this->redirect(array('controller' => 'users', 'action' => 'login'));
+        }*/
+
+         $this->set('hospitals', $this->Hospital->find('all'));
+
+
     }
 
     public function hospitalinfo($id = null)
@@ -36,12 +43,14 @@ class HospitalsController extends AppController
     }
     public function myaccount()
     {   $users = $this->Session->read('Auth.User');
-        if ($users['Role']['role'] == 'hospital_admin' || $users['Role']['role'] == 'superadmin') {
+        if ($users['Role']['role'] == 'hospital_admin') {
             $this->set('users',$users);
+            $hospitalList=$this->Hospital->find('all');
+            $this->set('hospitalList',$hospitalList);
         }
         else
         {
-            $this->Session->setFlash(__('You are not authorised to access Hospital information.'));
+            $this->Session->setFlash(__('You are not authorised to access Hospital account.'));
             $this->redirect(array('controller' => 'hospitals', 'action' => 'index'));
 
 

@@ -1,8 +1,5 @@
 <?php   echo $this->Html->script('jquery-ui');?>
-<div align="right"><h4><?php echo $this->html->Link(
-    'Home',
-    array('controller' => 'hospitals', 'action' => 'index'));
-    ?></h4></div>
+
 <h2 align="center" style="color:#b94a48">Doctor Registration</h2>
 <?php
 echo $this->Html->script('hospital.js');
